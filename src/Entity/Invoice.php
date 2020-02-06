@@ -36,6 +36,12 @@ class Invoice
      */
     private $ClientId;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\InvoiceLine", inversedBy="invoiceid")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $invoiceLine;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -85,6 +91,18 @@ class Invoice
     public function setClientId(int $ClientId): self
     {
         $this->ClientId = $ClientId;
+
+        return $this;
+    }
+
+    public function getInvoiceLine(): ?InvoiceLine
+    {
+        return $this->invoiceLine;
+    }
+
+    public function setInvoiceLine(?InvoiceLine $invoiceLine): self
+    {
+        $this->invoiceLine = $invoiceLine;
 
         return $this;
     }
